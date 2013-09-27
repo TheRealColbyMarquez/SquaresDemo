@@ -18,14 +18,25 @@ namespace SquaresDemo
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Random rand = new Random();
+        int number;
+        Texture2D squareTexture1;
+        Rectangle currentSquare1;
+        Texture2D squareTexture2;
+        Rectangle currentSquare2;
+        Texture2D squareTexture3;
+        Rectangle currentSquare3;
+        Texture2D squareTexture4;
+        Rectangle currentSquare4;
+        Texture2D squareTexture5;
+        Rectangle currentSquare5;
+        Color[] colors = new Color[5] { Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Purple};
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            Texture2D squareTexture;
-            Rectangle currentSquare;
-            currentSquare = new Rectangle
+
             
         }
 
@@ -38,7 +49,7 @@ namespace SquaresDemo
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -50,6 +61,13 @@ namespace SquaresDemo
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            squareTexture1 = Content.Load<Texture2D>(@"square2");
+            squareTexture2 = Content.Load<Texture2D>(@"square2");
+            squareTexture3 = Content.Load<Texture2D>(@"square2");
+            squareTexture4 = Content.Load<Texture2D>(@"square2");
+            squareTexture5 = Content.Load<Texture2D>(@"square2");
+
+            
 
             // TODO: use this.Content to load your game content here
         }
@@ -75,29 +93,35 @@ namespace SquaresDemo
                 this.Exit();
 
             // TODO: Add your update logic here
+            currentSquare1 = new Rectangle(
+                rand.Next(0, this.Window.ClientBounds.Width - 25),
+                rand.Next(0, this.Window.ClientBounds.Height - 25),
+                25, 25);
+            currentSquare2 = new Rectangle(
+                rand.Next(0, this.Window.ClientBounds.Width - 25),
+                rand.Next(0, this.Window.ClientBounds.Height - 25),
+                25, 25);
+            currentSquare3 = new Rectangle(
+                rand.Next(0, this.Window.ClientBounds.Width - 25),
+                rand.Next(0, this.Window.ClientBounds.Height - 25),
+                25, 25);
+            currentSquare4 = new Rectangle(
+                rand.Next(0, this.Window.ClientBounds.Width - 25),
+                rand.Next(0, this.Window.ClientBounds.Height - 25),
+                25, 25);
+            currentSquare5 = new Rectangle(
+                rand.Next(0, this.Window.ClientBounds.Width - 25),
+                rand.Next(0, this.Window.ClientBounds.Height - 25),
+                25, 25);
 
-            base.Update(gameTime);
+
+            //Square Color
+            //Random rnd = new Random();
+            //int number = rnd.Next(1, 5);
+           // base.Update(gameTime);
         }
 
-        public void DrawCrazySquares()
-        {
-            for()
-        }
         
-        public void DrawRainbow()
-        {
-            for()
-        }
-        
-        public void DrawBlackScreen()
-        {
-            for()
-        }
-        
-        public void DrawCheckerBoard ()
-        {
-           for()
-        }
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -105,15 +129,43 @@ namespace SquaresDemo
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
+            spriteBatch.Begin();
+            spriteBatch.Draw(
+                squareTexture1,
+                currentSquare1,
+                colors[1]);
+                spriteBatch.End();
+
+                spriteBatch.Begin();
+                spriteBatch.Draw(
+                    squareTexture2,
+                    currentSquare2,
+                    colors[1]);
+                spriteBatch.End();
+
+                spriteBatch.Begin();
+                spriteBatch.Draw(
+                    squareTexture3,
+                    currentSquare3,
+                    colors[2]);
+                spriteBatch.End();
+
+                spriteBatch.Begin();
+                spriteBatch.Draw(
+                    squareTexture4,
+                    currentSquare4,
+                    colors[3]);
+                spriteBatch.End();
+
+                spriteBatch.Begin();
+                spriteBatch.Draw(
+                    squareTexture5,
+                    currentSquare5,
+                    colors[4]);
+                spriteBatch.End();
 
             // TODO: Add your drawing code here
-
-             //DrawBlackScreen();
-             //DrawCheckerBoard();
-             DrawRainbow();
-             //DrawCrazySquares();
-
             base.Draw(gameTime);
         }
     }
