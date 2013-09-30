@@ -20,17 +20,9 @@ namespace SquaresDemo
         SpriteBatch spriteBatch;
         Random rand = new Random();
         int number;
-        Texture2D squareTexture1;
-        Rectangle currentSquare1;
-        Texture2D squareTexture2;
-        Rectangle currentSquare2;
-        Texture2D squareTexture3;
-        Rectangle currentSquare3;
-        Texture2D squareTexture4;
-        Rectangle currentSquare4;
-        Texture2D squareTexture5;
-        Rectangle currentSquare5;
-        Color[] colors = new Color[5] { Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Purple};
+        Color[] colors = new Color[4] { Color.Red, Color.Blue, Color.Green, Color.Yellow };
+        
+        
         
         public Game1()
         {
@@ -39,6 +31,19 @@ namespace SquaresDemo
 
             
         }
+
+        public void RandomSquares()
+        {
+            Rectangle[] square = new Rectangle[100];
+            for (int i = 0; i < 101; i++)
+            {
+                square[i] = new Rectangle(rand.Next(0, 15), rand.Next(0,15), 15, 15);
+
+
+            }
+
+        }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -61,11 +66,7 @@ namespace SquaresDemo
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            squareTexture1 = Content.Load<Texture2D>(@"square2");
-            squareTexture2 = Content.Load<Texture2D>(@"square2");
-            squareTexture3 = Content.Load<Texture2D>(@"square2");
-            squareTexture4 = Content.Load<Texture2D>(@"square2");
-            squareTexture5 = Content.Load<Texture2D>(@"square2");
+            
 
             
 
@@ -93,26 +94,7 @@ namespace SquaresDemo
                 this.Exit();
 
             // TODO: Add your update logic here
-            currentSquare1 = new Rectangle(
-                rand.Next(0, this.Window.ClientBounds.Width - 25),
-                rand.Next(0, this.Window.ClientBounds.Height - 25),
-                25, 25);
-            currentSquare2 = new Rectangle(
-                rand.Next(0, this.Window.ClientBounds.Width - 25),
-                rand.Next(0, this.Window.ClientBounds.Height - 25),
-                25, 25);
-            currentSquare3 = new Rectangle(
-                rand.Next(0, this.Window.ClientBounds.Width - 25),
-                rand.Next(0, this.Window.ClientBounds.Height - 25),
-                25, 25);
-            currentSquare4 = new Rectangle(
-                rand.Next(0, this.Window.ClientBounds.Width - 25),
-                rand.Next(0, this.Window.ClientBounds.Height - 25),
-                25, 25);
-            currentSquare5 = new Rectangle(
-                rand.Next(0, this.Window.ClientBounds.Width - 25),
-                rand.Next(0, this.Window.ClientBounds.Height - 25),
-                25, 25);
+            
 
 
             //Square Color
@@ -130,40 +112,9 @@ namespace SquaresDemo
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Gray);
-            spriteBatch.Begin();
+            SpriteBatch.Begin();
             spriteBatch.Draw(
-                squareTexture1,
-                currentSquare1,
-                colors[1]);
-                spriteBatch.End();
-
-                spriteBatch.Begin();
-                spriteBatch.Draw(
-                    squareTexture2,
-                    currentSquare2,
-                    colors[1]);
-                spriteBatch.End();
-
-                spriteBatch.Begin();
-                spriteBatch.Draw(
-                    squareTexture3,
-                    currentSquare3,
-                    colors[2]);
-                spriteBatch.End();
-
-                spriteBatch.Begin();
-                spriteBatch.Draw(
-                    squareTexture4,
-                    currentSquare4,
-                    colors[3]);
-                spriteBatch.End();
-
-                spriteBatch.Begin();
-                spriteBatch.Draw(
-                    squareTexture5,
-                    currentSquare5,
-                    colors[4]);
-                spriteBatch.End();
+                
 
             // TODO: Add your drawing code here
             base.Draw(gameTime);
