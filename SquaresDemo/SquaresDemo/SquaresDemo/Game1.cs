@@ -20,8 +20,9 @@ namespace SquaresDemo
         SpriteBatch spriteBatch;
         Random rand = new Random();
         int number;
+        Rectangle[] squares;
         Color[] colors = new Color[4] { Color.Red, Color.Blue, Color.Green, Color.Yellow };
-        
+        Texture2D square;
         
         
         public Game1()
@@ -29,16 +30,19 @@ namespace SquaresDemo
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            
+            squares = new Rectangle[100];
+            for (int i = 0; i < 100; i++)
+            {
+                squares[i] = new Rectangle(rand.Next(0, 800), rand.Next(0, 600), 15, 15);
+
+            }
         }
 
         public void RandomSquares()
         {
-            Rectangle[] square = new Rectangle[100];
-            for (int i = 0; i < 101; i++)
+            for (int i = 0; i < squares.Length; i++)
             {
-                square[i] = new Rectangle(rand.Next(0, 15), rand.Next(0,15), 15, 15);
-
+                spriteBatch.Draw(square, squares[i], Color.Yellow);
 
             }
 
@@ -66,8 +70,8 @@ namespace SquaresDemo
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
 
+            square = Content.Load<Texture2D>("single_snowflake-69px");
             
 
             // TODO: use this.Content to load your game content here
@@ -94,8 +98,16 @@ namespace SquaresDemo
                 this.Exit();
 
             // TODO: Add your update logic here
-            
 
+            for (int i = 0; i < squares.Length; i++)
+            {
+                if (squares[i].Bottom > 600)
+                {
+                    squares[i] = new Rectangle(rand.Next(0, 800), -50, 15, 15);
+                }
+
+                squares[i].Y += (int)((float)gameTime.ElapsedGameTime.Milliseconds * 0.5f);
+            }
 
             //Square Color
             //Random rnd = new Random();
@@ -103,7 +115,7 @@ namespace SquaresDemo
            // base.Update(gameTime);
         }
 
-        
+
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -111,9 +123,11 @@ namespace SquaresDemo
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
-            SpriteBatch.Begin();
-            spriteBatch.Draw(
+            GraphicsDevice.Clear("New.jpg");
+            spriteBatch.Begin();
+            RandomSquares();
+            spriteBatch.End();
+              
                 
 
             // TODO: Add your drawing code here
